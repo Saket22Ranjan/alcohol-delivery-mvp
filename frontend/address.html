@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Liquor Lane – Delivery Address</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="logo">🍻 Liquor Lane</div>
+        <div class="header-right">
+            <span class="user-badge">Checkout</span>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <section class="content" style="width: 100%;">
+            <div class="content-top">
+                <div>
+                    <h2>Delivery Address</h2>
+                    <p class="subtitle">
+                        Please provide your delivery details and optionally share your live location.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid" style="grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);">
+                <!-- Address Form -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Address Details</h3>
+                    </div>
+
+                    <form id="addressForm" class="address-form">
+                        <div class="form-row">
+                            <label>Full Name</label>
+                            <input type="text" id="fullName" required />
+                        </div>
+
+                        <div class="form-row">
+                            <label>Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="10-digit mobile" />
+                        </div>
+
+                        <div class="form-row">
+                            <label>Address Line</label>
+                            <input type="text" id="addressLine" required placeholder="House no, street, area" />
+                        </div>
+
+                        <div class="form-row">
+                            <label>City</label>
+                            <input type="text" id="city" required />
+                        </div>
+
+                        <div class="form-row">
+                            <label>Pincode</label>
+                            <input type="text" id="pincode" required />
+                        </div>
+
+                        <div class="form-row">
+                            <label>Live Location (optional)</label>
+                            <button type="button" id="btnUseLocation" class="btn small secondary">
+                                Use my current location
+                            </button>
+                            <p id="locationInfo" class="subtitle"></p>
+                        </div>
+
+                        <input type="hidden" id="lat" />
+                        <input type="hidden" id="lng" />
+
+                        <button type="submit" class="btn primary full-width">
+                            Confirm & Place Order
+                        </button>
+                        <p id="addressMsg" class="order-message"></p>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Order Summary</h3>
+                    </div>
+                    <div id="summaryItems" class="cart-items"></div>
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            Total: ₹<span id="summaryTotal">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Built as an MVP for demo / hackathon. Drink responsibly.</p>
+    </footer>
+
+    <script src="./js/address.js" defer></script>
+</body>
+
+</html>

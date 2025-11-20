@@ -327,7 +327,8 @@ function renderCart() {
 }
 
 // ===== ORDER =====
-async function placeOrder() {
+// ===== ORDER (STEP 1: SAVE & REDIRECT TO ADDRESS PAGE) =====
+function placeOrder() {
     orderMsgEl.textContent = "";
     orderMsgEl.style.color = ""; // reset
 
@@ -337,7 +338,8 @@ async function placeOrder() {
     }
 
     if (!currentUser.ageVerified) {
-        orderMsgEl.textContent = "You must complete age verification before ordering.";
+        orderMsgEl.textContent =
+            "You must complete age verification before ordering.";
         return;
     }
 
@@ -351,43 +353,34 @@ async function placeOrder() {
         return;
     }
 
-    try {
-        btnPlaceOrder.disabled = true;
-        btnPlaceOrder.textContent = "Placing order...";
+    const storeId = selectedStore.id || selectedStore._id;
 
-        const storeId = selectedStore.id || selectedStore._id;
+    // Build order payload (WITHOUT address yet)
+    const items = cart.map((i) => ({
+        productId: i.productId,
+        quantity: i.qty,
+        price: i.price
+    }));
 
-        // backend expects { items: [{ price, quantity }], customer }
-        const items = cart.map((i) => ({
-            productId: i.productId,
-            quantity: i.qty,
-            price: i.price
-        }));
+    const pendingOrder = {
+        items,
+        customer: {
+            name: currentUser.name || "Guest",
+            storeId
+        }
+    };
 
-        const payload = {
-            items,
-            customer: {
-                name: currentUser.name || "Guest",
-                storeId
-            }
-        };
+    // Save to localStorage so address page can read it
+    localStorage.setItem(
+        "liquorLanePendingOrder",
+        JSON.stringify(pendingOrder)
+    );
 
-        const data = await apiPost("/orders", payload);
+    // Also save cart (for summary)
+    localStorage.setItem("liquorLaneCart", JSON.stringify(cart));
 
-        orderMsgEl.textContent =
-            data.message || `Order placed! ID: ${data.orderId}, Total: ₹${data.total}`;
-        orderMsgEl.style.color = "#bbf7d0";
-
-        cart = [];
-        renderCart();
-    } catch (err) {
-        console.error(err);
-        orderMsgEl.textContent = err.message || "Failed to place order.";
-        orderMsgEl.style.color = "#fecaca";
-    } finally {
-        btnPlaceOrder.disabled = false;
-        btnPlaceOrder.textContent = "Place Order (COD)";
-    }
+    // Redirect to address page
+    window.location.href = "address.html";
 }
 
 // ===== INIT =====
