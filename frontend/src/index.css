@@ -1,3 +1,78 @@
+<<<<<<< HEAD
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 36 100% 90%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 36 100% 90%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 36 100% 90%;
+
+    --primary: 30 96% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 93% 47%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 36 50% 70%;
+
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 30 96% 43%;
+
+    --radius: 0.75rem;
+
+    /* Premium gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(30 96% 43%), hsl(45 93% 47%));
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 10%), hsl(0 0% 8%));
+    
+    /* Glow effects */
+    --glow-amber: 0 8px 32px hsl(30 96% 43% / 0.3);
+    --glow-gold: 0 8px 32px hsl(45 93% 47% / 0.25);
+    --glow-wine: 0 8px 32px hsl(0 70% 35% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 36 100% 90%;
+    --sidebar-primary: 30 96% 43%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 36 100% 90%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 30 96% 43%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+=======
 :root{
   --accent: #0f62fe;
   --muted: #666;
@@ -40,4 +115,5 @@ input{ padding:8px; width:100%; border-radius:6px; border:1px solid #ddd; }
 }
 .modal{
   width: 420px; background:#fff; padding:18px; border-radius:10px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+>>>>>>> df85e5f84aa844ac3a4b3a12be3c6b10ab1cd2b7
 }
