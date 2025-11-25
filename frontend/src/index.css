@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -64,14 +64,6 @@ All colors MUST be HSL.
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
 =======
 :root{
   --accent: #0f62fe;
@@ -115,5 +107,5 @@ input{ padding:8px; width:100%; border-radius:6px; border:1px solid #ddd; }
 }
 .modal{
   width: 420px; background:#fff; padding:18px; border-radius:10px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
->>>>>>> df85e5f84aa844ac3a4b3a12be3c6b10ab1cd2b7
+
 }
