@@ -8,76 +8,6 @@ import { Search, Star, MapPin, Plus, Minus, ShoppingCart, ChevronLeft, Loader2 }
 import { useToast } from "@/hooks/use-toast";
 import { api, type Product } from "@/lib/api";
 
-// Mock product data
-const mockProducts = [
-  {
-    id: "1",
-    name: "Château Margaux 2015",
-    category: "Wine",
-    price: 299.99,
-    volume: "750ml",
-    image: "🍷",
-    stock: "In Stock",
-    rating: 4.9,
-    description: "Premier Grand Cru Classé from Bordeaux",
-  },
-  {
-    id: "2",
-    name: "Macallan 18 Year",
-    category: "Spirits",
-    price: 349.99,
-    volume: "750ml",
-    image: "🥃",
-    stock: "In Stock",
-    rating: 4.8,
-    description: "Single Malt Scotch Whisky",
-  },
-  {
-    id: "3",
-    name: "Dom Pérignon Vintage",
-    category: "Wine",
-    price: 199.99,
-    volume: "750ml",
-    image: "🍾",
-    stock: "Limited",
-    rating: 5.0,
-    description: "Champagne from France",
-  },
-  {
-    id: "4",
-    name: "Hendrick's Gin",
-    category: "Spirits",
-    price: 39.99,
-    volume: "750ml",
-    image: "🍸",
-    stock: "In Stock",
-    rating: 4.7,
-    description: "Infused with cucumber and rose",
-  },
-  {
-    id: "5",
-    name: "Sierra Nevada Pale Ale",
-    category: "Beer",
-    price: 14.99,
-    volume: "6-pack",
-    image: "🍺",
-    stock: "In Stock",
-    rating: 4.6,
-    description: "Classic American Pale Ale",
-  },
-  {
-    id: "6",
-    name: "Grey Goose Vodka",
-    category: "Spirits",
-    price: 44.99,
-    volume: "750ml",
-    image: "🍹",
-    stock: "In Stock",
-    rating: 4.5,
-    description: "Premium French vodka",
-  },
-];
-
 export default function StoreCatalog() {
   const { storeId } = useParams();
   const { toast } = useToast();
@@ -107,10 +37,43 @@ export default function StoreCatalog() {
     fetchProducts();
   }, [storeId]);
 
-  const filteredProducts = mockProducts.filter(
+  // Helper to get additional product details for UI
+  const getProductDetails = (product: Product) => {
+    const name = product.name.toLowerCase();
+    if (name.includes("wine")) {
+      return {
+        image: "🍷",
+        description: product.name,
+        stock: "In Stock",
+        rating: 4.8
+      };
+    } else if (name.includes("beer")) {
+      return {
+        image: "🍺",
+        description: product.name,
+        stock: "In Stock",
+        rating: 4.6
+      };
+    } else if (name.includes("gin") || name.includes("vodka") || name.includes("scotch") || name.includes("ipa")) {
+      return {
+        image: "🥃",
+        description: product.name,
+        stock: "In Stock",
+        rating: 4.7
+      };
+    }
+    return {
+      image: "🍸",
+      description: product.name,
+      stock: "In Stock",
+      rating: 4.5
+    };
+  };
+
+  const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedCategory === "All" || product.category === selectedCategory)
+      (selectedCategory === "All" || getProductDetails(product).description.toLowerCase().includes(selectedCategory.toLowerCase()))
   );
 
   const handleQuantityChange = (productId: string, delta: number) => {
@@ -119,7 +82,7 @@ export default function StoreCatalog() {
     setQuantities({ ...quantities, [productId]: newQuantity });
   };
 
-  const handleAddToCart = (product: typeof mockProducts[0]) => {
+  const handleAddToCart = (product: Product) => {
     const quantity = quantities[product.id] || 1;
     toast({
       title: "Added to cart",
@@ -127,6 +90,7 @@ export default function StoreCatalog() {
     });
     handleQuantityChange(product.id, -quantity); // Reset quantity
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-hero py-12 px-4 sm:px-6 lg:px-8">

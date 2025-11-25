@@ -1,134 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Liquor Lane - Verified Alcohol Delivery</title>
-    <meta name="description" content="Premium verified alcohol delivery platform with age verification, local store partnerships, and compliant delivery" />
-    <meta name="author" content="Liquor Lane" />
-
-    <meta property="og:title" content="Liquor Lane - Verified Alcohol Delivery" />
-    <meta property="og:description" content="Order from local liquor stores with verified age compliance and secure delivery" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@LiquorLane" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
-=======
 
 <head>
   <meta charset="UTF-8" />
-  <title>Liquor Lane – Alcohol Delivery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquor Lane - Verified Alcohol Delivery</title>
+
+  <meta name="description"
+    content="Premium verified alcohol delivery platform with age verification, local store partnerships, and compliant delivery" />
+  <meta name="author" content="Liquor Lane" />
+
+  <meta property="og:title" content="Liquor Lane - Verified Alcohol Delivery" />
+  <meta property="og:description"
+    content="Order from local liquor stores with verified age compliance and secure delivery" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LiquorLane" />
+  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 </head>
 
 <body>
-  <!-- Age Gate Overlay -->
-  <div id="age-gate" class="age-gate">
-    <div class="age-gate-card">
-      <h1>Liquor Lane</h1>
-      <p class="age-gate-subtitle">
-        You must be of legal drinking age to use this service.
-      </p>
-
-      <label for="dob" class="age-gate-label">Enter your date of birth</label>
-      <input type="date" id="dob" class="age-gate-input" />
-
-      <div class="age-gate-actions">
-        <button id="btn-age-confirm" class="btn primary">Enter</button>
-        <button id="btn-age-exit" class="btn secondary">Exit</button>
-      </div>
-
-      <p id="age-gate-message" class="age-gate-message"></p>
-    </div>
-  </div>
-
-  <!-- App Shell -->
-  <header class="app-header">
-    <div class="logo">
-      🍻 Liquor Lane
-    </div>
-    <div class="header-right">
-      <span id="user-name" class="user-badge">Guest User</span>
-      <span id="verify-status" class="verify-badge">Age not verified</span>
-    </div>
-  </header>
-
-  <main class="app-main">
-    <!-- Sidebar: Stores -->
-    <aside class="sidebar">
-      <h2>Nearby Stores</h2>
-      <div id="store-list" class="store-list">
-        <!-- Stores will render here -->
-      </div>
-    </aside>
-
-    <!-- Content: Products + Cart -->
-    <section class="content">
-      <div class="content-top">
-        <div>
-          <h2 id="store-title">Select a store</h2>
-          <p id="store-subtitle" class="subtitle">
-            Choose a store on the left to see available drinks.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid">
-        <!-- Products -->
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Products</h3>
-          </div>
-          <div id="product-list" class="product-list">
-            <!-- Products will render here -->
-          </div>
-        </div>
-
-        <!-- Cart -->
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Your Cart</h3>
-          </div>
-          <div id="cart-empty" class="cart-empty">
-            Your cart is empty. Add some drinks 🍺
-          </div>
-          <div id="cart-items" class="cart-items hide">
-            <ul id="cart-list"></ul>
-            <div class="cart-footer">
-              <div class="cart-total">
-                Total: ₹<span id="cart-total">0</span>
-              </div>
-              <button id="btn-place-order" class="btn primary full-width">
-                Place Order (COD)
-              </button>
-              <p id="order-message" class="order-message"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="app-footer">
-    <p>Built as an MVP for demo / hackathon. Drink responsibly.</p>
-  </footer>
-
-  <script src="./js/app.js" defer></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
->>>>>>> df85e5f84aa844ac3a4b3a12be3c6b10ab1cd2b7
