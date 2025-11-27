@@ -32,7 +32,17 @@ export default function Stores() {
 
   const getStoreDetails = (store: Store) => {
     // Mock additional details for now - in a real app, this would come from the API
-    const storeDetails: Record<string, any> = {
+    interface StoreDetails {
+      logo: string;
+      rating: number;
+      reviews: number;
+      distance: string;
+      minOrder: number;
+      category: string[];
+      status: string;
+      tagline: string;
+    }
+    const storeDetails: Record<string, StoreDetails> = {
       store1: {
         logo: "🍷",
         rating: 4.8,

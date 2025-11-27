@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 
 declare global {
   interface Window {
-    google: any;
+    google: unknown;
   }
 }
 
