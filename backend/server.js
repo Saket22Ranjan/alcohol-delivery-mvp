@@ -301,6 +301,29 @@ app.post("/api/verify-email-otp", async (req, res) => {
   return res.json({ ok: true, user: { id: user.id, email: user.email } });
 });
 
+// ================== ADMIN AUTH ==================
+
+// POST /api/admin-login { email: "admin@example.com", password: "password" }
+app.post("/api/admin-login", async (req, res) => {
+  const { email, password } = req.body || {};
+  if (!email || !password) {
+    return res.status(400).json({ error: "Missing email or password" });
+  }
+
+  // Simple hardcoded admin credentials (in production, use proper auth)
+  const adminEmail = "admin@liquorlane.com";
+  const adminPassword = "admin123";
+
+  if (email === adminEmail && password === adminPassword) {
+    return res.json({
+      ok: true,
+      admin: { id: "admin-1", email: adminEmail, role: "admin" }
+    });
+  } else {
+    return res.status(401).json({ error: "Invalid admin credentials" });
+  }
+});
+
 // ================== START SERVER ==================
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

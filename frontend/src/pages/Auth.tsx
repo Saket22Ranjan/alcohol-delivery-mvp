@@ -49,15 +49,39 @@ export default function Auth() {
       return;
     }
     setLoading(true);
-    // Simulate sending email code
-    setTimeout(() => {
-      setCodeSent({ ...codeSent, email: true });
-      setLoading(false);
-      toast({
-        title: "Code sent",
-        description: "Verification code sent to your email",
+    try {
+      const response = await fetch("http://localhost:4000/api/send-email-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
       });
-    }, 1000);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCodeSent({ ...codeSent, email: true });
+        toast({
+          title: "Code sent",
+          description: "Verification code sent to your email",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Failed to send code",
+          description: data.error || "Unable to send verification code",
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Connection error",
+        description: "Unable to connect to server",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleVerifyEmail = async () => {
@@ -70,14 +94,39 @@ export default function Auth() {
       return;
     }
     setLoading(true);
-    // Simulate email verification
-    setTimeout(() => {
-      toast({
-        title: "Email verified",
-        description: "Successfully logged in",
+    try {
+      const response = await fetch("http://localhost:4000/api/verify-email-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, code: emailCode }),
       });
-      navigate("/dashboard");
-    }, 1000);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Email verified",
+          description: "Successfully logged in",
+        });
+        navigate("/");
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Verification failed",
+          description: data.error || "Invalid or expired code",
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Connection error",
+        description: "Unable to connect to server",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSendSMSCode = async () => {
